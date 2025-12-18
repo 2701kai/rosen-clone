@@ -1,19 +1,16 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navLinks = [
-  { label: "Business Fields", href: "#" },
-  { label: "Expertise", href: "#" },
-  { label: "Technology & Innovation", href: "#" },
-  { label: "Company", href: "#" },
-  { label: "Careers", href: "/" },
-];
-
-const metaLinks = [
-  { label: "Media & Events", href: "#" },
-  { label: "Newsletter", href: "#" },
-];
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  hoverScale,
+  hoverLift,
+  collapse,
+  slideInLeft,
+  springTransition,
+  easeTransition,
+} from "@/lib/animations";
 
 function GlobeIcon() {
   return (
@@ -45,22 +42,43 @@ function SearchIcon() {
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "de" : "en");
+  };
+
+  const navLinks = [
+    { label: t("nav.businessAreas"), href: "#" },
+    { label: t("nav.expertise"), href: "#" },
+    { label: t("nav.technology"), href: "#" },
+    { label: t("nav.company"), href: "#" },
+    { label: t("nav.careers"), href: "/" },
+  ];
+
+  const metaLinks = [
+    { label: t("nav.mediaEvents"), href: "#" },
+    { label: t("nav.newsletter"), href: "#" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Meta Navigation */}
-      <div style={{ backgroundColor: "#29333d" }} className="text-white text-sm">
+      <div className="bg-[image:var(--gradient-header-meta)] text-white text-sm">
         <div className="container mx-auto px-4 flex justify-end items-center gap-6 py-2">
           <nav className="hidden md:flex items-center gap-6">
             {metaLinks.map((link) => (
-              <a key={link.label} href={link.href} className="hover:text-rosen-blue transition-colors">
+              <a key={link.label} href={link.href} className="hover:text-rosen-meta-hover transition-colors">
                 {link.label}
               </a>
             ))}
           </nav>
-          <button className="flex items-center gap-2 hover:text-rosen-blue transition-colors">
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 hover:text-rosen-meta-hover transition-colors"
+          >
             <GlobeIcon />
-            <span>English</span>
+            <span>{i18n.language === "en" ? "English" : "Deutsch"}</span>
           </button>
         </div>
       </div>
@@ -70,31 +88,37 @@ export function Header() {
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <svg className="h-6 w-auto" viewBox="0 0 103 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" fill="#1395D9">
-                ROSEN
-              </text>
-            </svg>
+            <motion.img
+              src="/rosen-logo.svg"
+              alt="ROSEN"
+              className="h-6 w-auto"
+              variants={hoverScale}
+              whileHover="hover"
+              transition={springTransition}
+            />
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.label}
                 href={link.href}
-                className="text-rosen-blue hover:text-rosen-blue-dark transition-colors font-medium text-sm"
+                className="text-rosen-blue hover:text-rosen-navy-light transition-colors font-bold text-sm"
+                variants={hoverLift}
+                whileHover="hover"
+                transition={springTransition}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </nav>
 
           {/* Search & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-blue-dark transition-colors">
+            <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-navy-light transition-colors">
               <SearchIcon />
-              <span className="text-sm font-medium">Search</span>
+              <span className="text-sm font-bold">{t("nav.search")}</span>
             </button>
             <button
               className="lg:hidden text-rosen-blue"
@@ -107,19 +131,32 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="lg:hidden py-4 border-t">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.nav
+              className="lg:hidden py-4 border-t"
+              variants={collapse}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={easeTransition}
+            >
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-bold"
+                  variants={slideInLeft}
+                  initial="initial"
+                  animate="animate"
+                  transition={{ delay: index * 0.05 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

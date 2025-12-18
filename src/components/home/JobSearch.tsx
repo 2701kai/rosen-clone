@@ -1,9 +1,13 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { motion } from "motion/react";
 import { ChevronRight } from "../icons";
 import { Select } from "../ui";
 import { regions, cities, jobFields, experienceLevels } from "../../constants";
+import { fadeInDown, hoverScaleSmall, hoverSlideRight } from "@/lib/animations";
 
 export function JobSearch() {
+  const { t } = useTranslation();
   const [searchQuery, setSearchQuery] = useState("");
   const [region, setRegion] = useState(regions[0]);
   const [city, setCity] = useState(cities[0]);
@@ -23,15 +27,16 @@ export function JobSearch() {
   };
 
   return (
-    <div
-      className="search__filter-form py-6"
-      style={{
-        background: "linear-gradient(108.59deg, #375578 8.33%, #1395D9 77.6%)",
-      }}
+    <motion.div
+      className="search__filter-form py-6 bg-[image:var(--gradient-search-form)]"
+      variants={fadeInDown}
+      initial="initial"
+      animate="animate"
+      transition={{ duration: 0.4 }}
     >
       <form onSubmit={handleSubmit}>
         <div className="container mx-auto px-4">
-          <h5 className="job-search__heading">Open vacancies</h5>
+          <h5 className="job-search__heading">{t("jobs.openVacancies")}</h5>
         </div>
 
         <div className="search__filter-form__input">
@@ -44,14 +49,21 @@ export function JobSearch() {
                     type="text"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Search for Title or Job Number"
+                    placeholder={t("jobs.searchPlaceholder")}
                     autoComplete="off"
                     className="search__input w-full bg-white text-gray-700 placeholder-gray-500"
                   />
                 </div>
-                <button type="submit" className="search__btn whitespace-nowrap">
-                  Find your Job
-                </button>
+                <motion.button
+                  type="button"
+                  className="search__btn whitespace-nowrap"
+                  variants={hoverScaleSmall}
+                  whileHover="hover"
+                  whileTap="tap"
+                  onClick={() => window.open("https://elita.dev/what-we-do.mp4", "_blank")}
+                >
+                  {t("jobs.findJob")}
+                </motion.button>
               </div>
             </div>
           </div>
@@ -68,16 +80,18 @@ export function JobSearch() {
 
         <div className="container mx-auto px-4">
           <div className="text-right">
-            <button
+            <motion.button
               type="reset"
               onClick={handleClearAll}
               className="text-white hover:text-white/80 transition-colors inline-flex items-center gap-1 text-sm font-medium"
+              variants={hoverSlideRight}
+              whileHover="hover"
             >
-              Clear All <ChevronRight />
-            </button>
+              {t("jobs.clearAll")} <ChevronRight />
+            </motion.button>
           </div>
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }

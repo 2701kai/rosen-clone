@@ -34,6 +34,12 @@
   --color-rosen-navy: #232a3c;
   --color-rosen-navy-light: #375578;
   --color-rosen-navy-dark: #132643;
+  /* Tertiary Colors */
+  --color-rosen-teal: #137c77;
+  --color-rosen-purple: #8f497c;
+  --color-rosen-slate: #334b6b;
+  --color-rosen-breadcrumb: #506491;
+  --color-rosen-footer-dark: #1e2730;
   /* Text Colors - from original */
   --color-rosen-text-dark: #2e2e2e;
   --color-rosen-text-secondary: #29333d;
@@ -41,8 +47,18 @@
   --color-rosen-gray: #6c757d;
   --color-rosen-gray-light: #f8f9fa;
   --color-rosen-text: #212529;
+  /* Hover Colors - from original */
+  --color-rosen-meta-hover: #b9b9b9;
+  --color-rosen-breadcrumb-hover: #5a728e;
   /* Font - matches ROSEN original */
   --font-sans: "DIN Next LT W02", Helvetica, Verdana, Tahoma, sans-serif;
+
+  /* Gradients - extracted from original ROSEN site */
+  --gradient-header-meta: linear-gradient(270deg, #8f497c 8%, #137c77 55%, #1395d9 100%);
+  --gradient-search-form: linear-gradient(108.59deg, #375578 8.33%, #1395d9 77.6%);
+  --gradient-table-header: linear-gradient(288.59deg, #232a3c, #334b6b 70.88%);
+  --gradient-footer: linear-gradient(315deg, #232a3c 0%, #375578 70.88%);
+  --gradient-contact-btn: linear-gradient(288.59deg, #232a3c, #334b6b 70.88%);
 }
 
 html {
@@ -76,7 +92,7 @@ body {
   .job-list__header {
     display: flex;
     gap: 8px;
-    background: linear-gradient(288.59deg, rgb(35, 42, 60), rgb(51, 75, 107) 70.88%);
+    background: var(--gradient-table-header);
     padding: 0 24px;
     margin: 0 0 8px;
     box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 8px 0px;
@@ -126,7 +142,7 @@ body {
     transition: box-shadow 0.3s ease-out;
 
     &:hover {
-      box-shadow: rgba(0, 0, 0, 0.25) 4px 4px 12px 0px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 15px 35px -8px;
     }
   }
 
@@ -291,6 +307,13 @@ body {
     height: 100%;
     object-fit: cover;
     object-position: 50% 50%;
+    transition: transform 0.2s ease-in;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .content-teaser__inside:hover .content-teaser__image img {
+      transform: scale(1.07);
+    }
   }
 
   .content-teaser__body {
