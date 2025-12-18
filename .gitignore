@@ -22,3 +22,5 @@ Thumbs.db
 # Playwright screenshots
 .playwright-mcp/
 rosen-clone/
+
+__docs__/

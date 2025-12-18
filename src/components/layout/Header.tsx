@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Search, Globe, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const navLinks = [
@@ -14,6 +14,34 @@ const metaLinks = [
   { label: "Media & Events", href: "#" },
   { label: "Newsletter", href: "#" },
 ];
+
+function GlobeIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" className="w-4 h-4">
+      <path
+        stroke="currentColor"
+        d="M8.051 14.422c3.386 0 6.131-2.906 6.131-6.49 0-3.586-2.745-6.492-6.13-6.492-3.387 0-6.132 2.906-6.132 6.491s2.745 6.491 6.131 6.491"
+      />
+      <path
+        stroke="currentColor"
+        d="M8.051 14.422c1.726 0 3.125-2.906 3.125-6.49 0-3.586-1.399-6.492-3.125-6.492S4.926 4.346 4.926 7.931s1.4 6.491 3.125 6.491M8.051 1.44v12.982M2.272 6.006h11.635M2.272 9.718h11.635"
+      />
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 32 32">
+      <path
+        stroke="#1395D9"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M10.736 19.02a8.39 8.39 0 1 1 0-16.78 8.39 8.39 0 0 1 0 16.78M29.76 27.44l-9.334-9.526-2.432 2.432 9.33 9.53z"
+      />
+    </svg>
+  );
+}
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -31,7 +59,7 @@ export function Header() {
             ))}
           </nav>
           <button className="flex items-center gap-2 hover:text-rosen-blue transition-colors">
-            <Globe className="w-4 h-4" />
+            <GlobeIcon />
             <span>English</span>
           </button>
         </div>
@@ -50,12 +78,12 @@ export function Header() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
-                className="text-rosen-navy hover:text-rosen-blue transition-colors font-medium text-sm"
+                className="text-rosen-blue hover:text-rosen-blue-dark transition-colors font-medium text-sm"
               >
                 {link.label}
               </a>
@@ -64,8 +92,9 @@ export function Header() {
 
           {/* Search & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-dark-blue transition-colors">
-              <Search className="w-5 h-5" />
+            <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-blue-dark transition-colors">
+              <SearchIcon />
+              <span className="text-sm font-medium">Search</span>
             </button>
             <button
               className="lg:hidden text-rosen-blue"
