@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Hero } from "@/components/home/Hero";
+import { Breadcrumb } from "@/components/home/Breadcrumb";
 import { Intro } from "@/components/home/Intro";
 import { JobSearch } from "@/components/home/JobSearch";
 import { JobList } from "@/components/home/JobList";
@@ -14,14 +15,11 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <Breadcrumb />
       <Intro />
       <section className="pb-8">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <JobSearch />
-            <JobList />
-          </div>
-        </div>
+        <JobSearch />
+        <JobList />
       </section>
       <OpenApplication />
       <AlreadyApplied />

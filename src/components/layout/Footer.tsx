@@ -1,4 +1,7 @@
-import { Facebook, Linkedin, Youtube, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import iconFacebook from "@/assets/images/icon-facebook.svg";
+import iconLinkedin from "@/assets/images/icon-linkedin.svg";
+import iconYoutube from "@/assets/images/icon-youtube.svg";
 
 const quicklinks = [
   { label: "Products & Services", href: "#" },
@@ -29,9 +32,21 @@ const bottomLinks = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "https://www.facebook.com/ROSENGroupGlobal/", label: "Facebook" },
-  { icon: Linkedin, href: "https://www.linkedin.com/company/rosen/", label: "LinkedIn" },
-  { icon: Youtube, href: "https://www.youtube.com/user/ROSENGroupOfficial", label: "YouTube" },
+  {
+    icon: iconFacebook,
+    href: "https://www.facebook.com/ROSENGroupGlobal/",
+    label: "Facebook",
+  },
+  {
+    icon: iconLinkedin,
+    href: "https://www.linkedin.com/company/rosen/",
+    label: "LinkedIn",
+  },
+  {
+    icon: iconYoutube,
+    href: "https://www.youtube.com/user/ROSENGroupOfficial",
+    label: "YouTube",
+  },
 ];
 
 export function Footer() {
@@ -48,7 +63,7 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Quicklinks */}
             <div>
-              <h4 className="font-bold text-lg mb-4">Quicklinks</h4>
+              <h4 className="footer__heading">Quicklinks</h4>
               <ul className="space-y-2">
                 {quicklinks.map((link) => (
                   <li key={link.label}>
@@ -62,7 +77,7 @@ export function Footer() {
 
             {/* More about ROSEN */}
             <div>
-              <h4 className="font-bold text-lg mb-4">More about ROSEN</h4>
+              <h4 className="footer__heading">More about ROSEN</h4>
               <ul className="space-y-2">
                 {moreAbout.map((link) => (
                   <li key={link.label}>
@@ -76,7 +91,7 @@ export function Footer() {
 
             {/* Get in touch */}
             <div>
-              <h4 className="font-bold text-lg mb-4">Get in touch</h4>
+              <h4 className="footer__heading">Get in touch</h4>
               <ul className="space-y-2">
                 {getInTouch.map((link) => (
                   <li key={link.label}>
@@ -90,7 +105,7 @@ export function Footer() {
 
             {/* Stay informed */}
             <div>
-              <h4 className="font-bold text-lg mb-4">Stay informed</h4>
+              <h4 className="footer__heading">Stay informed</h4>
               <p className="text-gray-300 mb-4 text-sm">
                 Join our newsletter to stay up-to-date with our innovative technologies.
               </p>
@@ -104,10 +119,10 @@ export function Footer() {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white hover:text-rosen-blue transition-colors"
+                    className="hover:opacity-80 transition-opacity"
                     aria-label={social.label}
                   >
-                    <social.icon className="w-6 h-6" />
+                    <img src={social.icon} alt={social.label} className="w-6 h-6" />
                   </a>
                 ))}
               </div>
@@ -129,13 +144,13 @@ export function Footer() {
         </div>
       </div>
 
-      {/* Sticky Contact Button */}
+      {/* Sticky Contact Button - Circular icon style matching original */}
       <button
-        className="fixed bottom-6 right-6 bg-rosen-blue hover:bg-blue-600 text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-2 transition-colors z-40"
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all z-40 border-2 border-slate-400/50 hover:border-rosen-blue group"
+        style={{ backgroundColor: "#2d3748" }}
         aria-label="Get in touch"
       >
-        <Mail className="w-5 h-5" />
-        <span className="hidden sm:inline">Get in touch</span>
+        <Mail className="w-6 h-6 text-slate-300 group-hover:text-rosen-blue transition-colors" />
       </button>
     </footer>
   );
