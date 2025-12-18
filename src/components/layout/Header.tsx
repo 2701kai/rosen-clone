@@ -88,19 +88,14 @@ export function Header() {
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <motion.svg
+            <motion.img
+              src="/rosen-logo.svg"
+              alt="ROSEN"
               className="h-6 w-auto"
-              viewBox="0 0 103 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
               variants={hoverScale}
               whileHover="hover"
               transition={springTransition}
-            >
-              <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" fill="#1395D9">
-                ROSEN
-              </text>
-            </motion.svg>
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -109,7 +104,7 @@ export function Header() {
               <motion.a
                 key={link.label}
                 href={link.href}
-                className="text-rosen-blue hover:text-rosen-navy-light transition-colors font-medium text-sm"
+                className="text-rosen-blue hover:text-rosen-navy-light transition-colors font-bold text-sm"
                 variants={hoverLift}
                 whileHover="hover"
                 transition={springTransition}
@@ -123,7 +118,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-navy-light transition-colors">
               <SearchIcon />
-              <span className="text-sm font-medium">{t("nav.search")}</span>
+              <span className="text-sm font-bold">{t("nav.search")}</span>
             </button>
             <button
               className="lg:hidden text-rosen-blue"
@@ -150,7 +145,7 @@ export function Header() {
                 <motion.a
                   key={link.label}
                   href={link.href}
-                  className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-medium"
+                  className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-bold"
                   variants={slideInLeft}
                   initial="initial"
                   animate="animate"
