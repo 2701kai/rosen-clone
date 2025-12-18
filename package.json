@@ -1,0 +1,38 @@
+{
+  "name": "rosen-careers-clone",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "validate": "bun run type-check && bun run lint && bun run build",
+    "reset": "rm -rf dist node_modules bun.lock && bun install"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "@tailwindcss/vite": "^4.1.18",
+    "@tanstack/router-plugin": "^1.141.6",
+    "@types/bun": "latest",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.1.2",
+    "eslint": "^9.39.2",
+    "globals": "^16.5.0",
+    "lucide-react": "^0.561.0",
+    "tailwindcss": "4.1",
+    "typescript-eslint": "^8.50.0",
+    "vite": "^7.3.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "^1.141.6",
+    "react": "19",
+    "react-dom": "19"
+  }
+}
