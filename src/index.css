@@ -1,5 +1,27 @@
 @import "tailwindcss";
 
+/* DIN Next LT W02 Font */
+@font-face {
+  font-family: "DIN Next LT W02";
+  font-weight: 200;
+  font-display: swap;
+  src: url("/fonts/din-next-w02/din-next-w02-light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DIN Next LT W02";
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/din-next-w02/din-next-w02-regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "DIN Next LT W02";
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/din-next-w02/din-next-w02-bold.woff2") format("woff2");
+}
+
 @theme {
   /* Primary Colors */
   --color-rosen-blue: #1395d9;
@@ -9,12 +31,15 @@
   --color-rosen-navy: #232a3c;
   --color-rosen-navy-light: #375578;
   --color-rosen-navy-dark: #132643;
+  /* Text Colors - from original */
+  --color-rosen-text-dark: #2e2e2e;
+  --color-rosen-text-secondary: #29333d;
   /* Grays */
   --color-rosen-gray: #6c757d;
   --color-rosen-gray-light: #f8f9fa;
   --color-rosen-text: #212529;
-  /* Font */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  /* Font - matches ROSEN original */
+  --font-sans: "DIN Next LT W02", Helvetica, Verdana, Tahoma, sans-serif;
 }
 
 html {
@@ -25,4 +50,304 @@ body {
   font-family: var(--font-sans);
   color: #212529;
   line-height: 1.5;
+}
+
+/* Job List Component Styles */
+@layer components {
+  .job-list {
+    background: #e7e7e7;
+    padding: 48px 0 72px;
+    width: 100%;
+  }
+
+  .job-list__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .job-list__table {
+    margin-top: 24px;
+  }
+
+  .job-list__header {
+    display: grid;
+    grid-template-columns: 1fr 180px 200px;
+    background: linear-gradient(288.59deg, rgb(35, 42, 60), rgb(51, 75, 107) 70.88%);
+    padding: 0 24px;
+    margin: 0 0 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 8px 0px;
+    height: 43px;
+    align-items: center;
+  }
+
+  .job-list__header-btn {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: white;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 400;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .job-list__row {
+    display: grid;
+    grid-template-columns: 1fr 180px 200px;
+    padding: 0 24px;
+    margin: 0 0 8px;
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 8px 0px;
+    min-height: 88px;
+    align-items: center;
+    text-decoration: none;
+    background: white;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      background-color: #f9fafb;
+    }
+  }
+
+  .job-list__col-title {
+    padding: 16px 0;
+    color: var(--color-rosen-navy-light);
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 32px;
+  }
+
+  .job-list__col-location,
+  .job-list__col-experience {
+    padding: 16px 0;
+    color: var(--color-rosen-navy-light);
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 28px;
+  }
+
+  .job-list__load-more {
+    padding-top: 24px;
+    text-align: center;
+  }
+
+  .job-list__load-more-btn {
+    border: 1px solid var(--color-rosen-navy-light);
+    color: var(--color-rosen-navy-light);
+    background-color: transparent;
+    padding: 8px 24px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+      background-color: var(--color-rosen-navy-light);
+      color: white;
+    }
+  }
+
+  /* Intro Section - extracted from original */
+  .intro__title {
+    font-size: 48px;
+    font-weight: 500;
+    color: var(--color-rosen-navy-light);
+    line-height: 1.2;
+    margin-bottom: 24px;
+  }
+
+  .intro__content p {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--color-rosen-text-dark);
+    line-height: 31px;
+  }
+
+  /* Already Applied Section - extracted from original */
+  .already-applied {
+    background: rgb(231, 231, 231);
+    padding: 48px 0;
+  }
+
+  .already-applied__title {
+    font-size: 36px;
+    font-weight: 500;
+    color: rgb(55, 85, 120);
+    line-height: 43.2px;
+    margin: 0 0 24px;
+  }
+
+  .already-applied__text {
+    font-size: 21px;
+    font-weight: 300;
+    color: rgb(46, 46, 46);
+    line-height: 28.35px;
+    margin: 0;
+  }
+
+  /* Link List - guiding style */
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .link-list--guiding {
+    padding-top: 30px;
+  }
+
+  .link-list--guiding a {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgb(55, 85, 120);
+    padding: 9px 38px;
+    background: white;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 2px solid rgb(55, 85, 120);
+    border-radius: 40px;
+    transition: all 0.2s ease-in;
+  }
+
+  .link-list--guiding a:hover {
+    color: white;
+    background: var(--color-rosen-navy-light);
+    box-shadow: rgba(0, 0, 0, 0.25) 2px 2px 16px;
+  }
+
+  .link-list--guiding a:hover svg path {
+    fill: white;
+  }
+
+  /* Content Teaser - extracted from original */
+  .content-teaser {
+    display: flex;
+    padding: 0 12px;
+    max-width: 100%;
+  }
+
+  .content-teaser__inside {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: white;
+    color: rgb(34, 57, 87);
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 2px 2px 16px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease-in;
+  }
+
+  .content-teaser__inside:hover {
+    box-shadow: 0 15px 35px -8px rgba(0, 0, 0, 0.25);
+  }
+
+  .content-teaser__image {
+    position: relative;
+    min-height: 320px;
+  }
+
+  .content-teaser__body {
+    display: flex;
+    flex-direction: column;
+    padding: 16px 16px 0;
+    color: rgb(34, 57, 87);
+  }
+
+  .content-teaser__heading {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgb(55, 85, 120);
+    line-height: 27px;
+    margin: 0 0 24px;
+  }
+
+  .content-teaser__text {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgb(34, 57, 87);
+    line-height: 24.3px;
+    margin: 0 0 24px;
+  }
+
+  .content-teaser__link {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(19, 149, 217);
+    padding: 0 0 16px 16px;
+    line-height: 16px;
+    text-decoration: none;
+    grid-column: 2;
+    transition: color 0.4s ease-out;
+  }
+
+  .content-teaser__link:hover {
+    color: var(--color-rosen-navy-light);
+  }
+
+  .content-teaser__link:hover svg * {
+    fill: var(--color-rosen-navy-light);
+  }
+
+  .content-teaser__link svg {
+    display: inline;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-left: 4px;
+  }
+
+  .content-teaser__link svg * {
+    transition: fill 0.4s ease-out;
+  }
+
+  /* AI Notice - extracted from original */
+  .ai-notice {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 12px 0;
+  }
+
+  .ai-notice__text {
+    font-size: 21px;
+    font-weight: 300;
+    color: rgb(46, 46, 46);
+    line-height: 28.35px;
+    margin: 0;
+  }
+
+  .ai-notice__text sub {
+    font-size: 0.75em;
+    vertical-align: baseline;
+    line-height: 0;
+  }
+
+  /* Footer - extracted from original */
+  .footer__heading {
+    font-size: 20px;
+    font-weight: 700;
+    color: white;
+    line-height: 24px;
+    margin-bottom: 24px;
+  }
+
+  /* Search Input - extracted from original */
+  .search__input {
+    border: 2px solid var(--color-rosen-navy-light);
+    height: 46px;
+    padding: 9px 10px;
+    font-size: 16px;
+    line-height: 24px;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-rosen-blue);
+    }
+  }
 }
