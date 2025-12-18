@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Tailwind CSS v4 - Using @layer components for BEM component styles */
+/* @utility is for simple utilities; @layer components for multi-property styles */
+
 /* DIN Next LT W02 Font */
 @font-face {
   font-family: "DIN Next LT W02";

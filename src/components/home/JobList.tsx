@@ -1,84 +1,6 @@
 import { useState } from "react";
-
-function SortIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16">
-      <path
-        fill="#fff"
-        fillRule="evenodd"
-        d="M13.1 9.4c.2.2.2.526 0 .726L8.363 14.85c-.201.2-.527.2-.728 0l-4.735-4.724a.51.51 0 0 1 0-.726c.2-.2.527-.2.728 0L8 13.76l4.371-4.36c.201-.2.527-.2.728 0M2.9 6.6a.51.51 0 0 1 0-.726L7.637 1.15c.201-.2.527-.2.728 0l4.735 4.724c.201.2.201.525 0 .726-.2.2-.527.2-.728 0L8 2.24 3.629 6.6c-.201.2-.527.2-.728 0"
-        clipRule="evenodd"
-      />
-    </svg>
-  );
-}
-
-interface Job {
-  id: number;
-  title: string;
-  location: string;
-  experienceLevel: string;
-  url: string;
-}
-
-const jobs: Job[] = [
-  {
-    id: 5017,
-    title: "Software Developer Python DevOps (all genders welcome)",
-    location: "Lingen (DE), Osnabrück (DE)",
-    experienceLevel: "Professionals",
-    url: "https://jobs.rosen-group.com/job/5017?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 4969,
-    title: "Elektroniker (m/w/d)",
-    location: "Lingen (DE)",
-    experienceLevel: "Professionals",
-    url: "https://jobs.rosen-group.com/job/4969?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 5023,
-    title: "Assistant Manager - Finance",
-    location: "Kuala Lumpur (MY)",
-    experienceLevel: "Professionals",
-    url: "https://jobs.rosen-group.com/job/5023?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 4697,
-    title: "Ausbildungsplatz: Fachinformatiker Digitale Vernetzung (m/w/d) 2026",
-    location: "Lingen (DE)",
-    experienceLevel: "Apprenticeship & Dual Studies",
-    url: "https://jobs.rosen-group.com/job/4697?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 4735,
-    title: "Ingenieur (m/w/d) als System Integration Engineer",
-    location: "Lingen (DE)",
-    experienceLevel: "Professionals",
-    url: "https://jobs.rosen-group.com/job/4735?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 4967,
-    title: "Asset and Shipment Coordinator",
-    location: "Bergen (NO)",
-    experienceLevel: "Professionals",
-    url: "https://jobs.rosen-group.com/job/4967?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 4671,
-    title: "Projektleiter (m/w/d) in der Softwareentwicklung für den Bereich Applikationssoftware",
-    location: "Lingen (DE)",
-    experienceLevel: "Professionals",
-    url: "https://jobs.rosen-group.com/job/4671?referrer=jobs.rosen-group.com",
-  },
-  {
-    id: 4140,
-    title: "Werkstudent (m/w/d) im Bereich Corporate Marketing & Communications",
-    location: "Lingen (DE)",
-    experienceLevel: "Students & Graduates",
-    url: "https://jobs.rosen-group.com/job/4140?referrer=jobs.rosen-group.com",
-  },
-];
+import { SortIcon } from "../icons";
+import { jobs } from "../../constants";
 
 type SortField = "title" | "location" | "experience";
 type SortOrder = "asc" | "desc";
@@ -123,7 +45,6 @@ export function JobList() {
     <div className="job-list">
       <div className="job-list__container">
         <div className="job-list__table">
-          {/* Table Header */}
           <div className="job-list__header">
             <button onClick={() => handleSort("title")} className="job-list__header-btn job-list__header-col--title" title="Job Title">
               <span>Job Title</span>
@@ -139,7 +60,6 @@ export function JobList() {
             </button>
           </div>
 
-          {/* Job Rows */}
           <div className="job-list__rows">
             {visibleJobs.map((job) => (
               <a key={job.id} href={job.url} className="job-list__row">
@@ -156,7 +76,6 @@ export function JobList() {
             ))}
           </div>
 
-          {/* Load More Button */}
           <div className="job-list__load-more">
             <button
               type="button"
