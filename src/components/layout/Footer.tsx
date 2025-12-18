@@ -67,7 +67,7 @@ export function Footer() {
               <ul className="space-y-2">
                 {quicklinks.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-gray-300 hover:text-white transition-colors text-sm">
+                    <a href={link.href} className="footer__link">
                       {link.label}
                     </a>
                   </li>
@@ -81,7 +81,7 @@ export function Footer() {
               <ul className="space-y-2">
                 {moreAbout.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-gray-300 hover:text-white transition-colors text-sm">
+                    <a href={link.href} className="footer__link">
                       {link.label}
                     </a>
                   </li>
@@ -95,7 +95,7 @@ export function Footer() {
               <ul className="space-y-2">
                 {getInTouch.map((link) => (
                   <li key={link.label}>
-                    <a href={link.href} className="text-gray-300 hover:text-white transition-colors text-sm">
+                    <a href={link.href} className="footer__link">
                       {link.label}
                     </a>
                   </li>

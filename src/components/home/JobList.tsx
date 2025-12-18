@@ -125,15 +125,15 @@ export function JobList() {
         <div className="job-list__table">
           {/* Table Header */}
           <div className="job-list__header">
-            <button onClick={() => handleSort("title")} className="job-list__header-btn" title="Job Title">
+            <button onClick={() => handleSort("title")} className="job-list__header-btn job-list__header-col--title" title="Job Title">
               <span>Job Title</span>
               <SortIcon />
             </button>
-            <button onClick={() => handleSort("location")} className="job-list__header-btn" title="Location">
+            <button onClick={() => handleSort("location")} className="job-list__header-btn job-list__header-col--location" title="Location">
               <span>Location</span>
               <SortIcon />
             </button>
-            <button onClick={() => handleSort("experience")} className="job-list__header-btn" title="Experience Level">
+            <button onClick={() => handleSort("experience")} className="job-list__header-btn job-list__header-col--experience" title="Experience Level">
               <span>Experience Level</span>
               <SortIcon />
             </button>

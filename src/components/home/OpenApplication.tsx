@@ -24,7 +24,6 @@ export function OpenApplication() {
               <img
                 src={openApplicationImg}
                 alt="A woman sitting at a table and shaking hands"
-                className="absolute inset-0 w-full h-full object-cover"
               />
             </div>
 
