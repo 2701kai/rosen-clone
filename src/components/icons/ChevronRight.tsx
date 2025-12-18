@@ -1,8 +1,10 @@
+import { memo } from "react";
+
 interface ChevronRightProps {
   className?: string;
 }
 
-export function ChevronRight({ className = "w-4 h-4" }: ChevronRightProps) {
+export const ChevronRight = memo(function ChevronRight({ className = "w-4 h-4" }: ChevronRightProps) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" className={className}>
       <path
@@ -13,4 +15,4 @@ export function ChevronRight({ className = "w-4 h-4" }: ChevronRightProps) {
       />
     </svg>
   );
-}
+});

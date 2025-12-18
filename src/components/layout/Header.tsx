@@ -3,6 +3,14 @@ import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
+import {
+  hoverScale,
+  hoverLift,
+  collapse,
+  slideInLeft,
+  springTransition,
+  easeTransition,
+} from "@/lib/animations";
 
 function GlobeIcon() {
   return (
@@ -56,18 +64,18 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
       {/* Meta Navigation */}
-      <div style={{ backgroundColor: "#29333d" }} className="text-white text-sm">
+      <div className="bg-[image:var(--gradient-header-meta)] text-white text-sm">
         <div className="container mx-auto px-4 flex justify-end items-center gap-6 py-2">
           <nav className="hidden md:flex items-center gap-6">
             {metaLinks.map((link) => (
-              <a key={link.label} href={link.href} className="hover:text-rosen-blue transition-colors">
+              <a key={link.label} href={link.href} className="hover:text-rosen-meta-hover transition-colors">
                 {link.label}
               </a>
             ))}
           </nav>
           <button
             onClick={toggleLanguage}
-            className="flex items-center gap-2 hover:text-rosen-blue transition-colors"
+            className="flex items-center gap-2 hover:text-rosen-meta-hover transition-colors"
           >
             <GlobeIcon />
             <span>{i18n.language === "en" ? "English" : "Deutsch"}</span>
@@ -85,8 +93,9 @@ export function Header() {
               viewBox="0 0 103 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: "spring", stiffness: 400 }}
+              variants={hoverScale}
+              whileHover="hover"
+              transition={springTransition}
             >
               <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" fill="#1395D9">
                 ROSEN
@@ -100,9 +109,10 @@ export function Header() {
               <motion.a
                 key={link.label}
                 href={link.href}
-                className="text-rosen-blue hover:text-rosen-blue-dark transition-colors font-medium text-sm"
-                whileHover={{ y: -2 }}
-                transition={{ type: "spring", stiffness: 400 }}
+                className="text-rosen-blue hover:text-rosen-navy-light transition-colors font-medium text-sm"
+                variants={hoverLift}
+                whileHover="hover"
+                transition={springTransition}
               >
                 {link.label}
               </motion.a>
@@ -111,7 +121,7 @@ export function Header() {
 
           {/* Search & Mobile Menu */}
           <div className="flex items-center gap-4">
-            <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-blue-dark transition-colors">
+            <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-navy-light transition-colors">
               <SearchIcon />
               <span className="text-sm font-medium">{t("nav.search")}</span>
             </button>
@@ -130,18 +140,20 @@ export function Header() {
           {mobileMenuOpen && (
             <motion.nav
               className="lg:hidden py-4 border-t"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.2 }}
+              variants={collapse}
+              initial="initial"
+              animate="animate"
+              exit="exit"
+              transition={easeTransition}
             >
               {navLinks.map((link, index) => (
                 <motion.a
                   key={link.label}
                   href={link.href}
                   className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-medium"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
+                  variants={slideInLeft}
+                  initial="initial"
+                  animate="animate"
                   transition={{ delay: index * 0.05 }}
                 >
                   {link.label}

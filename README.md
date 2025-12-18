@@ -77,7 +77,8 @@ src/
 │       └── Footer.tsx
 ├── constants/           # Data layer (separated from UI)
 ├── lib/                 # Core utilities
-│   └── i18n.ts          # i18n configuration
+│   ├── i18n.ts          # i18n configuration
+│   └── animations.ts    # Shared Motion variants
 ├── test/                # Test setup
 └── routes/              # Pages (TanStack Router)
 ```
@@ -100,6 +101,23 @@ src/
 - **Smooth animations** - Staggered list animations, hover effects, mobile menu transitions
 - CSS architecture using BEM naming in Tailwind `@layer components`
 - Accessibility-friendly form controls
+
+## Pixel-Perfect Hover States
+
+All interactive elements match the original ROSEN site's hover behavior exactly:
+
+| Element | Hover Effect |
+|---------|--------------|
+| Header meta links | Light gray (#b9b9b9) text color |
+| Main navigation | Navy (#375578) text color |
+| Language toggle | Light gray text with globe icon |
+| Search button | Navy text color |
+| Job rows | Elevated shadow (0px 15px 35px -8px) |
+| Content teaser image | Scale transform (1.07) with reduced-motion support |
+| "Read more" links | Navy color transition |
+| Footer links | Opacity fade (0.8) |
+
+Hover styles were extracted using Playwright's computed style evaluation against the live ROSEN site.
 
 ## Quick Start
 
@@ -133,6 +151,20 @@ Custom styles use BEM methodology within Tailwind's layer system:
 ```
 
 This approach combines Tailwind's utility classes with semantic BEM naming for complex components.
+
+### Theme Variables
+
+Tailwind CSS 4's `@theme` directive defines ROSEN brand colors and gradients:
+
+```css
+@theme {
+  --color-rosen-blue: #1395d9;
+  --color-rosen-navy-light: #375578;
+  --color-rosen-meta-hover: #b9b9b9;
+  --gradient-header-meta: linear-gradient(270deg, #8f497c 8%, #137c77 55%, #1395d9 100%);
+  --gradient-table-header: linear-gradient(288.59deg, #232a3c, #334b6b 70.88%);
+}
+```
 
 ## What I'd Improve Next
 

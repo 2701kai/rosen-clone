@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import { ChevronRight } from "../icons";
 import { Select } from "../ui";
 import { regions, cities, jobFields, experienceLevels } from "../../constants";
+import { fadeInDown, hoverScaleSmall, hoverSlideRight } from "@/lib/animations";
 
 export function JobSearch() {
   const { t } = useTranslation();
@@ -27,12 +28,10 @@ export function JobSearch() {
 
   return (
     <motion.div
-      className="search__filter-form py-6"
-      style={{
-        background: "linear-gradient(108.59deg, #375578 8.33%, #1395D9 77.6%)",
-      }}
-      initial={{ opacity: 0, y: -20 }}
-      animate={{ opacity: 1, y: 0 }}
+      className="search__filter-form py-6 bg-[image:var(--gradient-search-form)]"
+      variants={fadeInDown}
+      initial="initial"
+      animate="animate"
       transition={{ duration: 0.4 }}
     >
       <form onSubmit={handleSubmit}>
@@ -58,8 +57,9 @@ export function JobSearch() {
                 <motion.button
                   type="submit"
                   className="search__btn whitespace-nowrap"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  variants={hoverScaleSmall}
+                  whileHover="hover"
+                  whileTap="tap"
                 >
                   {t("jobs.findJob")}
                 </motion.button>
@@ -83,7 +83,8 @@ export function JobSearch() {
               type="reset"
               onClick={handleClearAll}
               className="text-white hover:text-white/80 transition-colors inline-flex items-center gap-1 text-sm font-medium"
-              whileHover={{ x: 3 }}
+              variants={hoverSlideRight}
+              whileHover="hover"
             >
               {t("jobs.clearAll")} <ChevronRight />
             </motion.button>

@@ -53,12 +53,7 @@ export function Footer() {
   return (
     <footer>
       {/* Main Footer */}
-      <div
-        className="text-white py-12 relative"
-        style={{
-          background: "linear-gradient(315deg, #232a3c 0%, #375578 70.88%)",
-        }}
-      >
+      <div className="bg-[image:var(--gradient-footer)] text-white py-12 relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Quicklinks */}
@@ -132,7 +127,7 @@ export function Footer() {
       </div>
 
       {/* Bottom Footer */}
-      <div style={{ backgroundColor: "#1e2730" }} className="text-white py-4">
+      <div className="bg-rosen-footer-dark text-white py-4">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-center gap-4 md:gap-8 text-sm">
             {bottomLinks.map((link) => (
@@ -146,8 +141,7 @@ export function Footer() {
 
       {/* Sticky Contact Button - Circular icon style matching original */}
       <button
-        className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all z-40 border-2 border-slate-400/50 hover:border-rosen-blue group"
-        style={{ backgroundColor: "#2d3748" }}
+        className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all z-40 border-2 border-slate-400/50 hover:border-rosen-blue group bg-[image:var(--gradient-contact-btn)]"
         aria-label="Get in touch"
       >
         <Mail className="w-6 h-6 text-slate-300 group-hover:text-rosen-blue transition-colors" />

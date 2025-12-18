@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { motion, AnimatePresence } from "motion/react";
 import { SortIcon } from "../icons";
 import { jobs } from "../../constants";
+import { listItem, hoverScaleSmall, jobRowHover, getStaggerDelay } from "@/lib/animations";
 
 type SortField = "title" | "location" | "experience";
 type SortOrder = "asc" | "desc";
@@ -13,36 +14,47 @@ export function JobList() {
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
   const [visibleCount, setVisibleCount] = useState(8);
 
-  const handleSort = (field: SortField) => {
-    if (sortField === field) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortField(field);
+  const handleSort = useCallback((field: SortField) => {
+    setSortField((prevField) => {
+      if (prevField === field) {
+        setSortOrder((prev) => (prev === "asc" ? "desc" : "asc"));
+        return prevField;
+      }
       setSortOrder("asc");
-    }
-  };
+      return field;
+    });
+  }, []);
 
-  const sortedJobs = [...jobs].sort((a, b) => {
-    let aValue: string, bValue: string;
-    switch (sortField) {
-      case "title":
-        aValue = a.title;
-        bValue = b.title;
-        break;
-      case "location":
-        aValue = a.location;
-        bValue = b.location;
-        break;
-      case "experience":
-        aValue = a.experienceLevel;
-        bValue = b.experienceLevel;
-        break;
-    }
-    const comparison = aValue.localeCompare(bValue);
-    return sortOrder === "asc" ? comparison : -comparison;
-  });
+  const sortedJobs = useMemo(() => {
+    return [...jobs].sort((a, b) => {
+      let aValue: string, bValue: string;
+      switch (sortField) {
+        case "title":
+          aValue = a.title;
+          bValue = b.title;
+          break;
+        case "location":
+          aValue = a.location;
+          bValue = b.location;
+          break;
+        case "experience":
+          aValue = a.experienceLevel;
+          bValue = b.experienceLevel;
+          break;
+      }
+      const comparison = aValue.localeCompare(bValue);
+      return sortOrder === "asc" ? comparison : -comparison;
+    });
+  }, [sortField, sortOrder]);
 
-  const visibleJobs = sortedJobs.slice(0, visibleCount);
+  const visibleJobs = useMemo(
+    () => sortedJobs.slice(0, visibleCount),
+    [sortedJobs, visibleCount]
+  );
+
+  const handleLoadMore = useCallback(() => {
+    setVisibleCount((prev) => prev + 8);
+  }, []);
 
   return (
     <div className="job-list">
@@ -70,11 +82,12 @@ export function JobList() {
                   key={job.id}
                   href={job.url}
                   className="job-list__row"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  variants={listItem}
+                  initial="initial"
+                  animate="animate"
                   exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.2, delay: index * 0.03 }}
-                  whileHover={{ backgroundColor: "rgba(19, 149, 217, 0.05)" }}
+                  transition={getStaggerDelay(index)}
+                  whileHover={jobRowHover}
                 >
                   <div className="job-list__col-title" title={job.title}>
                     {job.title}
@@ -93,10 +106,11 @@ export function JobList() {
           <div className="job-list__load-more">
             <motion.button
               type="button"
-              onClick={() => setVisibleCount((prev) => prev + 8)}
+              onClick={handleLoadMore}
               className="job-list__load-more-btn"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              variants={hoverScaleSmall}
+              whileHover="hover"
+              whileTap="tap"
             >
               {t("jobs.loadMore")}
             </motion.button>

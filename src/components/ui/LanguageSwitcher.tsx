@@ -11,7 +11,7 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggleLanguage}
-      className="flex items-center gap-1 text-sm text-[#1395D9] hover:text-[#0d7ab8] transition-colors"
+      className="flex items-center gap-1 text-sm text-rosen-blue hover:text-rosen-blue-dark transition-colors"
       aria-label="Toggle language"
     >
       <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
