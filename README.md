@@ -9,6 +9,18 @@
 
 A pixel-perfect recreation of the [ROSEN Group careers page](https://www.rosen-group.com/en/careers/find-a-job), built with modern React best practices and production-grade architecture.
 
+## Live Demo
+
+**[https://rosen-clone.vercel.app/](https://rosen-clone.vercel.app/)**
+
+![ROSEN Careers Clone Screenshot](docs/screenshot.png)
+
+## Lighthouse Scores
+
+| Performance | Accessibility | Best Practices | SEO |
+|:-----------:|:-------------:|:--------------:|:---:|
+| 97 | 84 | 100 | 100 |
+
 ## Why This Project?
 
 This clone demonstrates my ability to:
@@ -17,6 +29,7 @@ This clone demonstrates my ability to:
 - **Apply modern architecture patterns** - Atomic Design, separation of concerns, reusable components
 - **Use cutting-edge tooling** - React 19, Vite 7, Tailwind CSS 4, TanStack Router
 - **Write maintainable code** - All components under 100 lines, DRY principles, proper TypeScript typing
+- **Optimize for performance** - 97 Lighthouse performance score, ~1.5s production builds
 
 ## Tech Stack
 
@@ -103,6 +116,17 @@ Custom styles use BEM methodology within Tailwind's layer system:
 ```
 
 This approach combines Tailwind's utility classes with semantic BEM naming for complex components.
+
+## What I'd Improve Next
+
+Given more time, I would:
+
+- **Add API integration** - Replace static job data with real ROSEN API calls
+- **Implement search functionality** - Connect filters to actual job filtering logic
+- **Add unit tests** - Vitest + React Testing Library for component coverage
+- **Improve accessibility** - Target 95+ Lighthouse accessibility score
+- **Add animations** - Framer Motion for smooth page transitions and micro-interactions
+- **Internationalization** - i18n support for German/English toggle
 
 ## Scripts
 
