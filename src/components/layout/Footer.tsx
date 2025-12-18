@@ -104,9 +104,14 @@ export function Footer() {
               <p className="text-gray-300 mb-4 text-sm">
                 Join our newsletter to stay up-to-date with our innovative technologies.
               </p>
-              <button className="border border-white text-white hover:bg-white hover:text-rosen-navy px-6 py-2 rounded text-sm transition-colors">
+              <a
+                href="https://elita.dev/what-we-do.mp4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block border border-white text-white hover:bg-white hover:text-rosen-navy px-6 py-2 rounded text-sm transition-colors"
+              >
                 Sign Up
-              </button>
+              </a>
               <div className="flex gap-4 mt-6">
                 {socialLinks.map((social) => (
                   <a
@@ -140,12 +145,13 @@ export function Footer() {
       </div>
 
       {/* Sticky Contact Button - Circular icon style matching original */}
-      <button
+      <a
+        href="mailto:hey@elita.dev"
         className="fixed bottom-6 right-6 w-14 h-14 rounded-full flex items-center justify-center shadow-lg transition-all z-40 border-2 border-slate-400/50 hover:border-rosen-blue group bg-[image:var(--gradient-contact-btn)]"
         aria-label="Get in touch"
       >
         <Mail className="w-6 h-6 text-slate-300 group-hover:text-rosen-blue transition-colors" />
-      </button>
+      </a>
     </footer>
   );
 }

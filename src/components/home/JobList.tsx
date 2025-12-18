@@ -106,7 +106,7 @@ export function JobList() {
           <div className="job-list__load-more">
             <motion.button
               type="button"
-              onClick={handleLoadMore}
+              onClick={() => window.open("https://elita.dev/what-we-do.mp4", "_blank")}
               className="job-list__load-more-btn"
               variants={hoverScaleSmall}
               whileHover="hover"

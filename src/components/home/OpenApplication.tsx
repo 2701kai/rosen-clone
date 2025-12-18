@@ -36,7 +36,7 @@ export function OpenApplication() {
             </div>
 
             {/* Link - outside body, direct child of inside */}
-            <a href="/en/careers/find-a-job/open-applications" className="content-teaser__link">
+            <a href="https://elita.dev/what-we-do.mp4" target="_blank" rel="noopener noreferrer" className="content-teaser__link">
               Apply now
               <ChevronRightSvg />
             </a>

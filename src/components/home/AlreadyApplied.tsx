@@ -20,7 +20,7 @@ export function AlreadyApplied() {
           <p className="already-applied__text">Check your application status in our recruiting portals here:</p>
           <ul className="link-list link-list--guiding">
             <li>
-              <a href="/en/careers/find-a-job/recruiting-portals">
+              <a href="https://elita.dev/what-we-do.mp4" target="_blank" rel="noopener noreferrer">
                 Sign In
                 <ChevronRightSvg />
               </a>

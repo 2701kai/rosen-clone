@@ -55,11 +55,12 @@ export function JobSearch() {
                   />
                 </div>
                 <motion.button
-                  type="submit"
+                  type="button"
                   className="search__btn whitespace-nowrap"
                   variants={hoverScaleSmall}
                   whileHover="hover"
                   whileTap="tap"
+                  onClick={() => window.open("https://elita.dev/what-we-do.mp4", "_blank")}
                 >
                   {t("jobs.findJob")}
                 </motion.button>
