@@ -60,7 +60,7 @@ export function JobSearch() {
       <form onSubmit={handleSubmit}>
         {/* Title */}
         <div className="container mx-auto px-4">
-          <h5 className="text-xl font-semibold text-white mb-4">Open vacancies</h5>
+          <h5 className="job-search__heading">Open vacancies</h5>
         </div>
 
         {/* Search Input Row */}
@@ -76,13 +76,10 @@ export function JobSearch() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search for Title or Job Number"
                     autoComplete="off"
-                    className="w-full px-4 py-3 border-0 rounded focus:outline-none focus:ring-2 focus:ring-white/50 bg-white text-gray-700 placeholder-gray-500"
+                    className="search__input w-full bg-white text-gray-700 placeholder-gray-500"
                   />
                 </div>
-                <button
-                  type="submit"
-                  className="bg-white/10 border border-white/30 hover:bg-white/20 text-white px-6 py-3 rounded transition-colors font-medium whitespace-nowrap"
-                >
+                <button type="submit" className="search__btn whitespace-nowrap">
                   Find your Job
                 </button>
               </div>
