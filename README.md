@@ -1,5 +1,12 @@
 # ROSEN Careers Page Clone
 
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?logo=vite&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4.1-06B6D4?logo=tailwindcss&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)
+![TanStack Router](https://img.shields.io/badge/TanStack_Router-1.141-FF4154?logo=reactrouter&logoColor=white)
+![Bun](https://img.shields.io/badge/Bun-latest-000000?logo=bun&logoColor=white)
+
 Pixel-perfect clone of the [ROSEN Group careers page](https://www.rosen-group.com/en/careers/find-a-job).
 
 ## Tech Stack
