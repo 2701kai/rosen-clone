@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "motion/react";
 import { SortIcon } from "../icons";
 import { jobs } from "../../constants";
 
@@ -6,6 +8,7 @@ type SortField = "title" | "location" | "experience";
 type SortOrder = "asc" | "desc";
 
 export function JobList() {
+  const { t } = useTranslation();
   const [sortField, setSortField] = useState<SortField>("title");
   const [sortOrder, setSortOrder] = useState<SortOrder>("asc");
   const [visibleCount, setVisibleCount] = useState(8);
@@ -46,44 +49,57 @@ export function JobList() {
       <div className="job-list__container">
         <div className="job-list__table">
           <div className="job-list__header">
-            <button onClick={() => handleSort("title")} className="job-list__header-btn job-list__header-col--title" title="Job Title">
-              <span>Job Title</span>
+            <button onClick={() => handleSort("title")} className="job-list__header-btn job-list__header-col--title" title={t("jobs.jobTitle")}>
+              <span>{t("jobs.jobTitle")}</span>
               <SortIcon />
             </button>
-            <button onClick={() => handleSort("location")} className="job-list__header-btn job-list__header-col--location" title="Location">
-              <span>Location</span>
+            <button onClick={() => handleSort("location")} className="job-list__header-btn job-list__header-col--location" title={t("jobs.location")}>
+              <span>{t("jobs.location")}</span>
               <SortIcon />
             </button>
-            <button onClick={() => handleSort("experience")} className="job-list__header-btn job-list__header-col--experience" title="Experience Level">
-              <span>Experience Level</span>
+            <button onClick={() => handleSort("experience")} className="job-list__header-btn job-list__header-col--experience" title={t("jobs.experienceLevel")}>
+              <span>{t("jobs.experienceLevel")}</span>
               <SortIcon />
             </button>
           </div>
 
           <div className="job-list__rows">
-            {visibleJobs.map((job) => (
-              <a key={job.id} href={job.url} className="job-list__row">
-                <div className="job-list__col-title" title={job.title}>
-                  {job.title}
-                </div>
-                <div className="job-list__col-location" title={job.location}>
-                  {job.location}
-                </div>
-                <div className="job-list__col-experience" title={job.experienceLevel}>
-                  {job.experienceLevel}
-                </div>
-              </a>
-            ))}
+            <AnimatePresence mode="popLayout">
+              {visibleJobs.map((job, index) => (
+                <motion.a
+                  key={job.id}
+                  href={job.url}
+                  className="job-list__row"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.2, delay: index * 0.03 }}
+                  whileHover={{ backgroundColor: "rgba(19, 149, 217, 0.05)" }}
+                >
+                  <div className="job-list__col-title" title={job.title}>
+                    {job.title}
+                  </div>
+                  <div className="job-list__col-location" title={job.location}>
+                    {job.location}
+                  </div>
+                  <div className="job-list__col-experience" title={job.experienceLevel}>
+                    {job.experienceLevel}
+                  </div>
+                </motion.a>
+              ))}
+            </AnimatePresence>
           </div>
 
           <div className="job-list__load-more">
-            <button
+            <motion.button
               type="button"
               onClick={() => setVisibleCount((prev) => prev + 8)}
               className="job-list__load-more-btn"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              Load more
-            </button>
+              {t("jobs.loadMore")}
+            </motion.button>
           </div>
         </div>
       </div>

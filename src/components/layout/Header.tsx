@@ -1,19 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
-
-const navLinks = [
-  { label: "Business Fields", href: "#" },
-  { label: "Expertise", href: "#" },
-  { label: "Technology & Innovation", href: "#" },
-  { label: "Company", href: "#" },
-  { label: "Careers", href: "/" },
-];
-
-const metaLinks = [
-  { label: "Media & Events", href: "#" },
-  { label: "Newsletter", href: "#" },
-];
+import { useTranslation } from "react-i18next";
+import { motion, AnimatePresence } from "motion/react";
 
 function GlobeIcon() {
   return (
@@ -45,6 +34,24 @@ function SearchIcon() {
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    i18n.changeLanguage(i18n.language === "en" ? "de" : "en");
+  };
+
+  const navLinks = [
+    { label: t("nav.businessAreas"), href: "#" },
+    { label: t("nav.expertise"), href: "#" },
+    { label: t("nav.technology"), href: "#" },
+    { label: t("nav.company"), href: "#" },
+    { label: t("nav.careers"), href: "/" },
+  ];
+
+  const metaLinks = [
+    { label: t("nav.mediaEvents"), href: "#" },
+    { label: t("nav.newsletter"), href: "#" },
+  ];
 
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm">
@@ -58,9 +65,12 @@ export function Header() {
               </a>
             ))}
           </nav>
-          <button className="flex items-center gap-2 hover:text-rosen-blue transition-colors">
+          <button
+            onClick={toggleLanguage}
+            className="flex items-center gap-2 hover:text-rosen-blue transition-colors"
+          >
             <GlobeIcon />
-            <span>English</span>
+            <span>{i18n.language === "en" ? "English" : "Deutsch"}</span>
           </button>
         </div>
       </div>
@@ -70,23 +80,32 @@ export function Header() {
         <div className="flex items-center justify-between h-14">
           {/* Logo */}
           <Link to="/" className="flex-shrink-0">
-            <svg className="h-6 w-auto" viewBox="0 0 103 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <motion.svg
+              className="h-6 w-auto"
+              viewBox="0 0 103 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: "spring", stiffness: 400 }}
+            >
               <text x="0" y="18" fontFamily="Arial, sans-serif" fontSize="20" fontWeight="bold" fill="#1395D9">
                 ROSEN
               </text>
-            </svg>
+            </motion.svg>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
-              <a
+              <motion.a
                 key={link.label}
                 href={link.href}
                 className="text-rosen-blue hover:text-rosen-blue-dark transition-colors font-medium text-sm"
+                whileHover={{ y: -2 }}
+                transition={{ type: "spring", stiffness: 400 }}
               >
                 {link.label}
-              </a>
+              </motion.a>
             ))}
           </nav>
 
@@ -94,7 +113,7 @@ export function Header() {
           <div className="flex items-center gap-4">
             <button className="flex items-center gap-2 text-rosen-blue hover:text-rosen-blue-dark transition-colors">
               <SearchIcon />
-              <span className="text-sm font-medium">Search</span>
+              <span className="text-sm font-medium">{t("nav.search")}</span>
             </button>
             <button
               className="lg:hidden text-rosen-blue"
@@ -107,19 +126,30 @@ export function Header() {
         </div>
 
         {/* Mobile Navigation */}
-        {mobileMenuOpen && (
-          <nav className="lg:hidden py-4 border-t">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-        )}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.nav
+              className="lg:hidden py-4 border-t"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              {navLinks.map((link, index) => (
+                <motion.a
+                  key={link.label}
+                  href={link.href}
+                  className="block py-3 text-rosen-navy hover:text-rosen-blue transition-colors font-medium"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  {link.label}
+                </motion.a>
+              ))}
+            </motion.nav>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
